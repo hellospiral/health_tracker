@@ -8,3 +8,13 @@
 user = User.create(email: "molly@gmail.com", password: "password")
 food = Food.create(name: "Eggs", calories_per_serving: 60, serving_size: "1 egg")
 consumption = Consumption.create(meal: "Breakfast", user_id: user.id, servings: 1, calories: 60, food_id: food.id)
+
+foods_list = [
+  ["Greek Yogurt", 120, "1 cup"],
+  ["Pizza", 298, "1 slice"],
+  ["Banana", 105, "1 banana"]
+]
+
+foods_list.each do |name, cals, serving_size|
+  Food.create(name: name, calories_per_serving: cals, serving_size: serving_size)
+end

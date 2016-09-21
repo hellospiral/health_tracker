@@ -7,3 +7,4 @@
     <li> <%= consumption.food.name %></li>
   <% end %>
 </ul>
+<%= render :partial => 'consumptions/form', locals: {:@user => @user, :@consumption => @user.consumptions.new, :@foods => Food.all }%>
