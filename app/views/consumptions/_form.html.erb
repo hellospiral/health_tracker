@@ -1,3 +1,11 @@
 <div id="add_consumption_form">
-  <%= render :partial => 'consumptions/formpartial', locals: {:@user => @user, :@consumption => @user.consumptions.new, :@foods => Food.all }%>
+  <%= form_for ([@user, @consumption]) do |f| %>
+    <h3>Add to your eaten foods:</h3>
+    <%= f.collection_select(:food_id, @foods, :id, :name) %>
+    <% options = ([['Breakfast', 'Breakfast'], ['Lunch', 'Lunch'], ['Dinner', 'Dinner'], ['Snack', 'Snack']]) %>
+    <%= f.select(:meal, options_for_select(options)) %>
+    <%= f.select(:servings, options_for_select((1..10))) %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.submit "Submit" %>
+  <% end %>
 </div>
