@@ -1,0 +1,11 @@
+<h2>Add a food item to the database</h2>
+
+<%= form_for @food do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :calories_per_serving %>
+  <%= f.text_field :calories_per_serving %>
+  <%= f.label :serving_size %>
+  <%= f.text_field :serving_size %>
+  <%= f.submit %>
+<% end %>
