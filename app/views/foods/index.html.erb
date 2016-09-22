@@ -1,7 +1,9 @@
+
+<h3>Here are some foods available in our app:</h3>
 <% if @foods.any? %>
-<ul>
+<ul class="list-group">
   <% @foods.each do |food| %>
-    <li><%= food.name %></li>
+    <li class="list-group-item"><%= food.name %></li>
   <% end %>
 </ul>
 <% else %>

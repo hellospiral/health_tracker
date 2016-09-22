@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     resources :consumptions
   end
 
-  root :to => "foods#index"
 
   resources :foods, :only => [:index, :new, :create]
 
+  root :to => "foods#index"
 end
