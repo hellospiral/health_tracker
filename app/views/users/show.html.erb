@@ -1,9 +1,17 @@
 <h1> <%= @user.email %>'s Profile </h1>
 
-<h3> You have eaten: </h3>
+<h3> Your daily calories goal: 2,000</h3>
+<h3> You've currently consumed: <%= @todays_consumptions.sum(:calories) %>  calories</h3>
+
+
+<h3> Here's what you've eaten today: </h3>
 <ul id = "eaten_foods_list">
-  <% @user.consumptions.each do |consumption| %>
-    <li> <%= consumption.food.name %></li>
+  <% if @todays_consumptions.any? %>
+    <% @todays_consumptions.each do |consumption| %>
+      <li> <%= consumption.food.name %></li>
+    <% end %>
+  <% else %>
+    <p>You haven't eaten anything today!</p>
   <% end %>
 </ul>
 <%= render :partial => 'consumptions/form', locals: {:@user => @user, :@consumption => @user.consumptions.new, :@foods => Food.all }%>
