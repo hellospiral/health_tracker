@@ -5,7 +5,10 @@ class ConsumptionsController < ApplicationController
     @consumption = Consumption.new(consumption_params)
     if @consumption.save
       flash[:notice] = "Food saved!"
-      redirect_to user_path(@user)
+      respond_to do |format|
+        format.html {redirect_to user_path(current_user)}
+        format.js
+      end
     else
       flash[:alert] = "Whoops, try again."
       redirect_to user_path(@user)

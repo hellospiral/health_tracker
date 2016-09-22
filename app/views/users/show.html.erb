@@ -2,7 +2,7 @@
 <p> Something! </p>
 
 <h3> You have eaten: </h3>
-<ul>
+<ul id = "eaten_foods_list">
   <% @user.consumptions.each do |consumption| %>
     <li> <%= consumption.food.name %></li>
   <% end %>

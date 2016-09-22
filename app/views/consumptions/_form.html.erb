@@ -1,5 +1,5 @@
 <div id="add_consumption_form">
-  <%= form_for ([@user, @consumption]) do |f| %>
+  <%= form_for [@user, @consumption], remote: true do |f| %>
     <h3>Add to your eaten foods:</h3>
     <%= f.collection_select(:food_id, @foods, :id, :name) %>
     <% options = ([['Breakfast', 'Breakfast'], ['Lunch', 'Lunch'], ['Dinner', 'Dinner'], ['Snack', 'Snack']]) %>
