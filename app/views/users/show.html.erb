@@ -3,6 +3,10 @@
 <h3> Your daily calories goal: 2,000</h3>
 <h3> You've currently consumed: <%= @todays_consumptions.sum(:calories) %>  calories</h3>
 
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
+<%= render :partial => 'column_chart', :object => @todays_consumptions %>
+
 
 <h3> Here's what you've eaten today: </h3>
 <ul id = "eaten_foods_list">
