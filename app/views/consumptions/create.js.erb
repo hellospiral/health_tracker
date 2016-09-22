@@ -1,1 +1,4 @@
 $('#eaten_foods_list').append("<li><%=@consumption.food.name%></li>");
+$('#todays_cals').html("<%= @todays_consumptions.sum(:calories) %>");
+
+new Chartkick.ColumnChart('chart-1', [["Calories", <%=@todays_consumptions.sum(:calories)%>]], {'min': 0, "max": 2000});

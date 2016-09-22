@@ -1,7 +1,7 @@
 class ConsumptionsController < ApplicationController
   def create
-#    binding.pry
     @user = current_user
+    @todays_consumptions = @user.consumptions.where("created_at::date =?", Date.today)
     @consumption = Consumption.new(consumption_params)
     if @consumption.save
       flash[:notice] = "Food saved!"

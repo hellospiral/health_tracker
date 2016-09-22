@@ -1,7 +1,8 @@
 <h1> <%= @user.email %>'s Profile </h1>
 
+
 <h3> Your daily calories goal: 2,000</h3>
-<h3> You've currently consumed: <%= @todays_consumptions.sum(:calories) %>  calories</h3>
+<h3> You've currently consumed: <span id="todays_cals"><%= @todays_consumptions.sum(:calories) %></span>  calories</h3>
 
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
