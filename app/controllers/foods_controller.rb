@@ -11,14 +11,14 @@ class FoodsController < ApplicationController
     @foods = Food.all
     @food = Food.new(food_params)
     if @food.save
-      flash[:notice] = "Food added to the database!"
+
       respond_to do |format|
         format.html {redirect_to user_path(current_user)}
-        format.js
+        format.js { flash[:notice] = "Food added to the database!"}
       end
     else
       flash[:alert] = "There was a problem adding your food, please try again"
-      render new
+      redirect_to user_path(current_user)
     end
   end
 

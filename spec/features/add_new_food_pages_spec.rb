@@ -15,4 +15,18 @@ describe 'the add a new food path', js: true do
     click_on 'Create Food'
     expect(page).to have_select('consumption[food_id]', :options => ['Turtle Soup'])
   end
+  it 'shows an error if you dont fill out all the information' do
+    user = FactoryGirl.create(:user)
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log in'
+    visit user_path(user)
+    click_on("Add a new food")
+    fill_in 'Name', :with => ""
+    fill_in "Calories per serving", :with => ""
+    fill_in "Serving size", :with => ""
+    click_on 'Create Food'
+    expect(page).to have_content('There was a problem adding your food, please try again')
+  end
 end
