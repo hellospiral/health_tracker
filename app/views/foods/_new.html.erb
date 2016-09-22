@@ -1,11 +1,12 @@
-
-<%= form_for @food, html: {id: :add_food_form}, remote: true do |f| %>
-  <h2>Add a food item to the database</h2>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :calories_per_serving %>
-  <%= f.text_field :calories_per_serving %>
-  <%= f.label :serving_size %>
-  <%= f.text_field :serving_size %>
-  <%= f.submit %>
-<% end %>
+<div class="col-sm-6 col-sm-offset-3">
+  <%= form_for @food, html: {id: :add_food_form}, remote: true do |f| %>
+    <h2>Add a food item to the database</h2>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.label :calories_per_serving %>
+    <%= f.text_field :calories_per_serving, class: "form-control" %>
+    <%= f.label :serving_size %>
+    <%= f.text_field :serving_size, class: "form-control" %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+</div>

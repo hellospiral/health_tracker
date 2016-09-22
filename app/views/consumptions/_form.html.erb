@@ -1,11 +1,14 @@
 <div id="add_consumption_form">
   <%= form_for [@user, @consumption], remote: true do |f| %>
     <h3>Add to your eaten foods:</h3>
-    <%= f.collection_select(:food_id, @foods, :id, :name) %>
+    <%= f.label :food_id %>
+    <%= f.collection_select(:food_id, @foods, :id, :name, {}, {class: "form-control"}) %>
     <% options = ([['Breakfast', 'Breakfast'], ['Lunch', 'Lunch'], ['Dinner', 'Dinner'], ['Snack', 'Snack']]) %>
-    <%= f.select(:meal, options_for_select(options)) %>
-    <%= f.select(:servings, options_for_select((1..10))) %>
+    <%= f.label :meal %>
+    <%= f.select(:meal, options_for_select(options), {}, {class: "form-control"})  %>
+    <%= f.label :servings %>
+    <%= f.select(:servings, options_for_select((1..10)), {}, {class: "form-control"})  %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.submit "Submit" %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
   <% end %>
 </div>

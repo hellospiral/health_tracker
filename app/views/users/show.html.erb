@@ -1,26 +1,34 @@
-<h1> <%= @user.email %>'s Profile </h1>
+<div class="col-sm-8 col-sm-offset-2">
+  <h1 class="center"> <%= @user.email %>'s Profile
+  <h3 class="center"> Your daily calories goal: 2,000 calories</h3>
+  <h3 class="center"> You've currently consumed: <span id="todays_cals"><%= @todays_consumptions.sum(:calories) %></span>  calories</h3>
+</div>
 
+<div class="col-sm-8 col-sm-offset-2">
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
-<h3> Your daily calories goal: 2,000</h3>
-<h3> You've currently consumed: <span id="todays_cals"><%= @todays_consumptions.sum(:calories) %></span>  calories</h3>
+  <%= render :partial => 'column_chart', :object => @todays_consumptions %>
+</div>
 
-<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-
-<%= render :partial => 'column_chart', :object => @todays_consumptions %>
-
-
-<h3> Here's what you've eaten today: </h3>
-<ul id = "eaten_foods_list">
-  <% if @todays_consumptions.any? %>
-    <% @todays_consumptions.each do |consumption| %>
-      <li> <%= consumption.food.name %></li>
-    <% end %>
-  <% else %>
-    <p>You haven't eaten anything today!</p>
-  <% end %>
-</ul>
-<%= render :partial => 'consumptions/form', locals: {:@user => @user, :@consumption => @user.consumptions.new, :@foods => Food.all }%>
-
-<div id="add_food_link">
-  <%= link_to "Add a new food", new_food_path, remote: true %>
+<div class="row">
+  <div class="col-sm-6">
+    <h3> Here's what you've eaten today: </h3>
+    <ul id = "eaten_foods_list">
+      <% if @todays_consumptions.any? %>
+        <% @todays_consumptions.each do |consumption| %>
+          <li> <%= consumption.food.name %>, <%= consumption.calories %> calories</li>
+        <% end %>
+      <% else %>
+        <p>You haven't eaten anything today!</p>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-sm-6">
+    <%= render :partial => 'consumptions/form', locals: {:@user => @user, :@consumption => @user.consumptions.new, :@foods => Food.all }%>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4" id="add_food_link">
+    <h4><%= link_to "Add a new food to the database", new_food_path, remote: true, class: "btn btn-warning btn-block" %><h4>
+  </div>
 </div>
